@@ -7,14 +7,14 @@ import Note from "../Note/Note";
 
 //Props:
 // notes = array of notes
-// selectNote = function to select a note
+// selectNote = function to select a note passed from App
 
 class NoteList extends Component {
   noteList = [];
 
   componentWillMount() {
     this.noteList = this.props.notes.map(note => (
-      <Note key={note.id} props={note} selectNote={this.props.selectNote} />
+      <Note key={note.id} {...note} selectNote={this.props.selectNote} />
     ));
   }
 

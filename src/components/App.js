@@ -5,7 +5,14 @@ import NoteList from "./NoteList/NoteList";
 
 class App extends Component {
   state = {
-    selectedNote: null
+    selectedNote: {
+      id: null,
+      title: "",
+      body: "",
+      location: null,
+      date: null,
+      tags: null
+    }
   };
   notes = [
     {
@@ -39,15 +46,13 @@ class App extends Component {
     }
   ];
   selectNote = id => {
-    this.setState({ selectedNote: id });
     const [selectedNote] = this.notes.filter(note => {
       return note.id === id;
     });
-    console.log(selectedNote);
+    this.setState({ selectedNote });
   };
 
   render() {
-    console.log(this);
     return (
       <MDBContainer fluid>
         <MDBRow>
@@ -57,7 +62,8 @@ class App extends Component {
 
           <MDBCol size="8">
             <MDBContainer style={{ marginTop: "20px" }}>
-              <h1>Notes</h1>
+              <h1>{this.state.selectedNote.title}</h1>
+              <p>{this.state.selectedNote.body}</p>
             </MDBContainer>
           </MDBCol>
         </MDBRow>

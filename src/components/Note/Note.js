@@ -12,13 +12,13 @@ class Note extends Component {
   render() {
     return (
       <MDBListGroupItem
-        onClick={() => this.props.selectNote(this.props.props.id)}
+        onClick={() => this.props.selectNote(this.props.id)}
         style={{ cursor: "pointer" }}
       >
         <div className="d-flex w-100 justify-content-between">
-          <h3 className="mb-1">{this.props.props.title}</h3>
+          <h3 className="mb-1">{this.props.title}</h3>
         </div>
-        <p className="mb-1">{this.props.props.body.substring(0, 50)}...</p>
+        <p className="mb-1">{this.props.body.substring(0, 50)}...</p>
       </MDBListGroupItem>
     );
   }
