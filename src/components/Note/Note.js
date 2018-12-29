@@ -1,22 +1,25 @@
 import React, { Component } from "react";
+import { MDBListGroupItem } from "mdbreact";
 
 //TODO: create a function that only trims strings at the end of words so it displays "more..." instead of "mo..."
 
 class Note extends Component {
-  selectNote(e) {
-    e.preventDefault();
-    this.props.selectNote(this.props.note.id);
-  }
+  // selectNote(e) {
+  //   e.preventDefault();
+  //   this.props.selectNote(this.props.props.id);
+  //   console.log(this);
+  // }
   render() {
     return (
-      <a className="note ui raised card" onClick={e => this.selectNote(e)}>
-        <div className="content">
-          <div className="header">{this.props.note.title}</div>
-          <div className="description">
-            <p>{this.props.note.body.substring(0, 50)}...</p>
-          </div>
+      <MDBListGroupItem
+        onClick={() => this.props.selectNote(this.props.props.id)}
+        style={{ cursor: "pointer" }}
+      >
+        <div className="d-flex w-100 justify-content-between">
+          <h3 className="mb-1">{this.props.props.title}</h3>
         </div>
-      </a>
+        <p className="mb-1">{this.props.props.body.substring(0, 50)}...</p>
+      </MDBListGroupItem>
     );
   }
 }

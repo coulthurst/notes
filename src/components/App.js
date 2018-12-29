@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+
 import NoteList from "./NoteList/NoteList";
 
 class App extends Component {
+  state = {
+    selectedNote: null
+  };
   notes = [
     {
       id: 1,
@@ -33,12 +38,30 @@ class App extends Component {
       tags: null
     }
   ];
+  selectNote = id => {
+    this.setState({ selectedNote: id });
+    const [selectedNote] = this.notes.filter(note => {
+      return note.id === id;
+    });
+    console.log(selectedNote);
+  };
 
   render() {
+    console.log(this);
     return (
-      <div>
-        <NoteList notes={this.notes} />
-      </div>
+      <MDBContainer fluid>
+        <MDBRow>
+          <MDBCol size="4">
+            <NoteList notes={this.notes} selectNote={this.selectNote} />
+          </MDBCol>
+
+          <MDBCol size="8">
+            <MDBContainer style={{ marginTop: "20px" }}>
+              <h1>Notes</h1>
+            </MDBContainer>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     );
   }
 }
