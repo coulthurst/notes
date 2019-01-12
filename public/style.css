@@ -2,13 +2,45 @@ body {
   background-color: rgb(42, 45, 53) !important;
 }
 
+.note-list .card-body,
 .note-list li,
 .navbar,
-.note-editor {
+.note-title,
+.note-title input,
+.note-body,
+.note-body textarea {
   background-color: rgb(35, 36, 42) !important;
   color: #fff !important;
 }
-
+.note-list li {
+  border: 1px solid rgb(42, 45, 53);
+  border-left: none;
+  border-right: none;
+}
+.note-list li:first-of-type {
+  border-top: none;
+}
+.note-list li:last-of-type {
+  border-bottom: none;
+}
 .note-list li h3 {
-  color: #0caa41;
+  color: #0caa41 !important;
+}
+
+.note-title input {
+  color: #0caa41 !important;
+  font-size: 24px !important;
+}
+
+.note-body textarea {
+  min-height: 500px;
+}
+
+.note-body textarea:focus,
+.note-title input:focus {
+  outline: none;
+}
+
+.note-editor .card-header {
+  border-bottom: 1px solid rgb(42, 45, 53);
 }

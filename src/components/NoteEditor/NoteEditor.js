@@ -3,7 +3,6 @@ import {
   MDBCard,
   MDBCardTitle,
   MDBCardText,
-  MDBContainer,
   MDBCardBody,
   MDBCardHeader
 } from "mdbreact";
@@ -22,43 +21,39 @@ class NoteEditor extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <MDBContainer>
-            <MDBCard style={{ marginTop: "1rem" }}>
-              <MDBCardHeader color="deep-orange lighten-1">
-                <input
-                  value={this.props.note.title}
-                  onChange={this.onTitleInputChange}
-                  onBlur={this.onNoteSave}
-                  type="text"
-                  style={{
-                    width: "100%",
-                    backgroundColor: "transparent",
-                    color: "#fff",
-                    border: "none"
-                  }}
-                />
-              </MDBCardHeader>
-              <MDBCardBody>
-                <MDBCardText>
-                  <input
-                    value={this.props.note.body}
-                    onChange={this.onBodyInputChange}
-                    onBlur={this.onNoteSave}
-                    type="text"
-                    style={{
-                      width: "100%",
-                      backgroundColor: "transparent",
-                      border: "none"
-                    }}
-                  />
-                </MDBCardText>
-                {/* <MDBBtn color="deep-orange">go somewhere</MDBBtn> */}
-              </MDBCardBody>
-            </MDBCard>
-          </MDBContainer>
-        </div>
+      <div className="note-editor">
+        <MDBCard style={{ marginTop: "1rem" }}>
+          <MDBCardHeader className="note-title">
+            <input
+              value={this.props.note.title}
+              onChange={this.onTitleInputChange}
+              onBlur={this.onNoteSave}
+              type="text"
+              style={{
+                width: "100%",
+                backgroundColor: "transparent",
+                color: "#fff",
+                border: "none"
+              }}
+            />
+          </MDBCardHeader>
+          <MDBCardBody className="note-body">
+            <MDBCardText>
+              <textarea
+                value={this.props.note.body}
+                onChange={this.onBodyInputChange}
+                onBlur={this.onNoteSave}
+                type="text"
+                style={{
+                  width: "100%",
+                  backgroundColor: "transparent",
+                  border: "none"
+                }}
+              />
+            </MDBCardText>
+            {/* <MDBBtn color="deep-orange">go somewhere</MDBBtn> */}
+          </MDBCardBody>
+        </MDBCard>
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBContainer, MDBListGroup } from "mdbreact";
+import { MDBContainer, MDBListGroup, MDBCard, MDBCardBody } from "mdbreact";
 import Note from "../Note/Note";
 
 const NoteList = ({ notes, onNoteSelect }) => {
@@ -8,9 +8,13 @@ const NoteList = ({ notes, onNoteSelect }) => {
   });
 
   return (
-    <MDBContainer className="note-list" style={{ marginTop: "20px" }}>
-      <MDBListGroup>{renderedList}</MDBListGroup>
-    </MDBContainer>
+    <div className="note-list">
+      <MDBCard style={{ marginTop: "1rem" }}>
+        <MDBCardBody>
+          <MDBListGroup>{renderedList}</MDBListGroup>
+        </MDBCardBody>
+      </MDBCard>
+    </div>
   );
 };
 
