@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { MDBListGroupItem } from "mdbreact";
 
 const Note = ({ note, onNoteSelect }) => {

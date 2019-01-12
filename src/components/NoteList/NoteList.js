@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { MDBContainer, MDBListGroup } from "mdbreact";
 import Note from "../Note/Note";
 

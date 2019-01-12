@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
 import NoteList from "./NoteList/NoteList";
+import NoteEditor from "./NoteEditor/NoteEditor";
 
 class App extends Component {
   state = {
@@ -45,12 +46,36 @@ class App extends Component {
       }
     ]
   };
+
   onNoteSelect = note => {
     this.setState({ selectedNote: note });
   };
+  onUpdateNoteTitle = text => {
+    let newNote = { ...this.state.selectedNote };
+    newNote.title = text;
+    console.log(newNote);
+    this.setState({ selectedNote: newNote });
+  };
+  onUpdateNoteBody = text => {
+    let newNote = { ...this.state.selectedNote };
+    newNote.body = text;
+    this.setState({ selectedNote: newNote });
+  };
+
+  onNoteSave = note => {
+    // check if the note already exists
+    let newNoteList = this.state.notes;
+    for (let i = 0; i < newNoteList.length; i++) {
+      if (note.id === newNoteList[i].id) {
+        console.log("here");
+        newNoteList[i] = note;
+        this.setState({ notes: newNoteList });
+        return;
+      }
+    }
+  };
 
   render() {
-    console.log(this);
     return (
       <MDBContainer fluid>
         <MDBRow>
@@ -63,8 +88,12 @@ class App extends Component {
 
           <MDBCol size="8">
             <MDBContainer style={{ marginTop: "20px" }}>
-              <h1>{this.state.selectedNote.title}</h1>
-              <p>{this.state.selectedNote.body}</p>
+              <NoteEditor
+                note={this.state.selectedNote}
+                onUpdateNoteTitle={this.onUpdateNoteTitle}
+                onUpdateNoteBody={this.onUpdateNoteBody}
+                onNoteSave={this.onNoteSave}
+              />
             </MDBContainer>
           </MDBCol>
         </MDBRow>

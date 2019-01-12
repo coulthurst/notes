@@ -1,24 +1,67 @@
-import React from "react";
-import { MDBCard, MDBCardTitle, MDBCardText, MDBContainer } from "mdbreact";
+import React, { Component } from "react";
+import {
+  MDBCard,
+  MDBCardTitle,
+  MDBCardText,
+  MDBContainer,
+  MDBCardBody,
+  MDBCardHeader
+} from "mdbreact";
 
-const PanelPage = props => {
-  return (
-    <MDBContainer style={{ marginTop: "20px" }}>
-      <MDBCard className="card-body note-editor" style={{ marginTop: "1rem" }}>
-        <MDBCardTitle>Panel Title</MDBCardTitle>
-        <MDBCardText>
-          Some quick example text to build on the panel title and make up the
-          bulk of the panel's content.
-        </MDBCardText>
-        <div className="flex-row">
-          <a href="#!">MDBCard link</a>
-          <a href="#!" style={{ marginLeft: "1.25rem" }}>
-            Another link
-          </a>
+class NoteEditor extends Component {
+  onTitleInputChange = e => {
+    this.props.onUpdateNoteTitle(e.target.value);
+  };
+  onBodyInputChange = e => {
+    this.props.onUpdateNoteBody(e.target.value);
+  };
+  onNoteSave = () => {
+    console.log(this.props.note);
+    this.props.onNoteSave(this.props.note);
+  };
+
+  render() {
+    return (
+      <div>
+        <div>
+          <MDBContainer>
+            <MDBCard style={{ marginTop: "1rem" }}>
+              <MDBCardHeader color="deep-orange lighten-1">
+                <input
+                  value={this.props.note.title}
+                  onChange={this.onTitleInputChange}
+                  onBlur={this.onNoteSave}
+                  type="text"
+                  style={{
+                    width: "100%",
+                    backgroundColor: "transparent",
+                    color: "#fff",
+                    border: "none"
+                  }}
+                />
+              </MDBCardHeader>
+              <MDBCardBody>
+                <MDBCardText>
+                  <input
+                    value={this.props.note.body}
+                    onChange={this.onBodyInputChange}
+                    onBlur={this.onNoteSave}
+                    type="text"
+                    style={{
+                      width: "100%",
+                      backgroundColor: "transparent",
+                      border: "none"
+                    }}
+                  />
+                </MDBCardText>
+                {/* <MDBBtn color="deep-orange">go somewhere</MDBBtn> */}
+              </MDBCardBody>
+            </MDBCard>
+          </MDBContainer>
         </div>
-      </MDBCard>
-    </MDBContainer>
-  );
-};
+      </div>
+    );
+  }
+}
 
-export default PanelPage;
+export default NoteEditor;
