@@ -44,3 +44,8 @@ body {
 .note-editor .card-header {
   border-bottom: 1px solid rgb(42, 45, 53);
 }
+
+#btn--add {
+  background-color: #0caa41 !important;
+  border-radius: 40px;
+}

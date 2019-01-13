@@ -4,7 +4,8 @@ import {
   MDBCardTitle,
   MDBCardText,
   MDBCardBody,
-  MDBCardHeader
+  MDBCardHeader,
+  MDBBtn
 } from "mdbreact";
 
 class NoteEditor extends Component {
@@ -15,10 +16,11 @@ class NoteEditor extends Component {
     this.props.onUpdateNoteBody(e.target.value);
   };
   onNoteSave = () => {
-    console.log(this.props.note);
     this.props.onNoteSave(this.props.note);
   };
-
+  onAddNote = () => {
+    this.props.onAddNote();
+  };
   render() {
     return (
       <div className="note-editor">
@@ -54,6 +56,9 @@ class NoteEditor extends Component {
             {/* <MDBBtn color="deep-orange">go somewhere</MDBBtn> */}
           </MDBCardBody>
         </MDBCard>
+        <MDBBtn id="btn--add" onClick={this.onAddNote}>
+          Add Note
+        </MDBBtn>
       </div>
     );
   }

@@ -61,13 +61,25 @@ class App extends Component {
     newNote.body = text;
     this.setState({ selectedNote: newNote });
   };
-
+  onAddNote = () => {
+    let id = this.state.notes.length + 1;
+    const note = {
+      id: id,
+      title: "Untitled",
+      body: "",
+      location: null,
+      date: null,
+      tags: null
+    };
+    this.setState({
+      selectedNote: note,
+      notes: [...this.state.notes, note]
+    });
+  };
   onNoteSave = note => {
-    // check if the note already exists
     let newNoteList = this.state.notes;
     for (let i = 0; i < newNoteList.length; i++) {
       if (note.id === newNoteList[i].id) {
-        console.log("here");
         newNoteList[i] = note;
         this.setState({ notes: newNoteList });
         return;
@@ -87,14 +99,13 @@ class App extends Component {
           </MDBCol>
 
           <MDBCol size="8">
-            <MDBContainer style={{ marginTop: "20px" }}>
-              <NoteEditor
-                note={this.state.selectedNote}
-                onUpdateNoteTitle={this.onUpdateNoteTitle}
-                onUpdateNoteBody={this.onUpdateNoteBody}
-                onNoteSave={this.onNoteSave}
-              />
-            </MDBContainer>
+            <NoteEditor
+              note={this.state.selectedNote}
+              onUpdateNoteTitle={this.onUpdateNoteTitle}
+              onUpdateNoteBody={this.onUpdateNoteBody}
+              onNoteSave={this.onNoteSave}
+              onAddNote={this.onAddNote}
+            />
           </MDBCol>
         </MDBRow>
       </MDBContainer>
