@@ -3,33 +3,37 @@ import {
   Navbar,
   NavbarBrand,
   NavbarNav,
-  NavItem,
-  NavLink,
   NavbarToggler,
   Collapse,
-  FormInline,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  NavItem,
+  NavLink
 } from "mdbreact";
 
-class NavbarPage extends React.Component {
+class Nav extends React.Component {
   state = {
-    isOpen: false
+    isOpen: false,
+    collapseID: ""
   };
 
-  toggleCollapse = this.setState({ isOpen: !this.state.isOpen });
+  toggleCollapse = collapseID => () => {
+    this.setState(prevState => ({
+      collapseID: prevState.collapseID !== collapseID ? collapseID : ""
+    }));
+  };
 
   render() {
     return (
-      <Navbar dark expand="md">
-        <NavbarBrand>
-          <strong className="white-text">Notes</strong>
-        </NavbarBrand>
+      <Navbar dark>
+        <NavbarToggler onClick={this.toggleCollapse("navbarCollapse1")} />
+        <NavbarNav left />
+        <NavbarNav right>
+          <NavbarBrand>
+            <strong style={{ color: "#0caa41" }}>NOTES</strong>
+          </NavbarBrand>
+        </NavbarNav>
       </Navbar>
     );
   }
 }
 
-export default NavbarPage;
+export default Nav;

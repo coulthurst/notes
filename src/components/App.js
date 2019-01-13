@@ -1,8 +1,19 @@
 import React, { Component } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import fire from "../fire";
 
+import NavBar from "./NavBar/NavBar";
 import NoteList from "./NoteList/NoteList";
 import NoteEditor from "./NoteEditor/NoteEditor";
+
+// fire base
+// var ref = fire.database().ref("notes");
+// ref.on("value", function(snapshot) {
+//   snapshot.forEach(function(childSnapshot) {
+//     var childData = childSnapshot.val();
+//     console.log(childData);
+//   });
+// });
 
 class App extends Component {
   state = {
@@ -89,26 +100,33 @@ class App extends Component {
 
   render() {
     return (
-      <MDBContainer fluid>
-        <MDBRow>
-          <MDBCol size="4">
-            <NoteList
-              notes={this.state.notes}
-              onNoteSelect={this.onNoteSelect}
-            />
-          </MDBCol>
+      <div>
+        <div>
+          <NavBar />
+        </div>
+        <div>
+          <MDBContainer fluid>
+            <MDBRow>
+              <MDBCol size="4">
+                <NoteList
+                  notes={this.state.notes}
+                  onNoteSelect={this.onNoteSelect}
+                />
+              </MDBCol>
 
-          <MDBCol size="8">
-            <NoteEditor
-              note={this.state.selectedNote}
-              onUpdateNoteTitle={this.onUpdateNoteTitle}
-              onUpdateNoteBody={this.onUpdateNoteBody}
-              onNoteSave={this.onNoteSave}
-              onAddNote={this.onAddNote}
-            />
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
+              <MDBCol size="8">
+                <NoteEditor
+                  note={this.state.selectedNote}
+                  onUpdateNoteTitle={this.onUpdateNoteTitle}
+                  onUpdateNoteBody={this.onUpdateNoteBody}
+                  onNoteSave={this.onNoteSave}
+                  onAddNote={this.onAddNote}
+                />
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
+        </div>
+      </div>
     );
   }
 }
