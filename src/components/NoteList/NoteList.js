@@ -9,7 +9,7 @@ const NoteList = ({ notes, onNoteSelect }) => {
 
   return (
     <div className="note-list">
-      <MDBCard style={{ marginTop: "1rem" }}>
+      <MDBCard>
         <MDBCardBody>
           <MDBListGroup>{renderedList}</MDBListGroup>
         </MDBCardBody>

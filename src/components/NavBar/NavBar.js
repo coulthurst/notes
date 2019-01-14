@@ -28,7 +28,7 @@ class Nav extends React.Component {
         <NavbarNav left />
         <NavbarNav right>
           <NavbarBrand>
-            <strong style={{ color: "#0caa41" }}>NOTES</strong>
+            <strong style={{ color: "#2ecc71" }}>NOTES</strong>
           </NavbarBrand>
         </NavbarNav>
       </Navbar>

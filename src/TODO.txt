@@ -1,2 +1,7 @@
-Connect firebase to project
+add time stamps to notes
+    -last edited
+
+integrate quill.js 
+    -https://quilljs.com/
+
 

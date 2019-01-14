@@ -1,7 +1,9 @@
 body {
   background-color: rgb(42, 45, 53) !important;
 }
-
+.navbar {
+  margin-bottom: 15px;
+}
 .note-list .card-body,
 .note-list li,
 .navbar,
@@ -10,7 +12,7 @@ body {
 .note-body,
 .note-body textarea {
   background-color: rgb(35, 36, 42) !important;
-  color: #fff !important;
+  color: #7f8c8d !important;
 }
 .note-list li {
   border: 1px solid rgb(42, 45, 53);
@@ -24,16 +26,18 @@ body {
   border-bottom: none;
 }
 .note-list li h3 {
-  color: #0caa41 !important;
+  color: #2ecc71 !important;
 }
 
 .note-title input {
-  color: #0caa41 !important;
-  font-size: 24px !important;
+  color: #2ecc71 !important;
+  font-size: 32px !important;
 }
 
 .note-body textarea {
-  min-height: 500px;
+  height: calc(100vh - 210px);
+  resize: none;
+  font-size: 18px;
 }
 
 .note-body textarea:focus,
@@ -46,6 +50,41 @@ body {
 }
 
 #btn--add {
-  background-color: #0caa41 !important;
+  position: fixed;
+  right: 1.25em;
+  bottom: 1.25em;
+  font-size: 1.1em;
+  background-color: #2ecc71 !important;
   border-radius: 40px;
+  color: rgb(35, 36, 42) !important;
+}
+#btn--add:hover {
+  background-color: #27ae60 !important;
+}
+.fa-save,
+.fa-trash-o {
+  margin-left: 1.25rem;
+}
+.fa-save:before,
+.fa-floppy-o:before,
+.fa-trash-o:before {
+  content: "\F0C7";
+  line-height: 50px;
+  transition: 0.2s ease-in-out;
+}
+.fa-ellipsis-v:before {
+  line-height: 50px;
+  cursor: pointer;
+}
+i.fa.fa-save.fa-2x:hover {
+  color: #27ae60 !important;
+  cursor: pointer;
+}
+i.fa.fa-trash-o.fa-2x:hover {
+  color: #e74c3c !important;
+  cursor: pointer;
+}
+.note-list .list-group {
+  height: calc(100vh - 130px);
+  overflow: scroll;
 }

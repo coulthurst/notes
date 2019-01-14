@@ -1,19 +1,12 @@
 import React, { Component } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
-import fire from "../fire";
+import firebase from "../fire";
 
 import NavBar from "./NavBar/NavBar";
 import NoteList from "./NoteList/NoteList";
 import NoteEditor from "./NoteEditor/NoteEditor";
 
 // fire base
-// var ref = fire.database().ref("notes");
-// ref.on("value", function(snapshot) {
-//   snapshot.forEach(function(childSnapshot) {
-//     var childData = childSnapshot.val();
-//     console.log(childData);
-//   });
-// });
 
 class App extends Component {
   state = {
@@ -25,77 +18,90 @@ class App extends Component {
       date: null,
       tags: null
     },
-    notes: [
-      {
-        id: 1,
-        author: "coulthurst",
-        title: "First Note",
-        body: "This is the first note. Hopefully this works.",
-        location: null,
-        date: "Dec 27th",
-        tags: null
-      },
-      {
-        id: 2,
-        author: "coulthurst",
-        title: "Groceries",
-        body:
-          "Apples, pears, steak, mushrooms, wine, cheese, more cheese, and another cheese",
-        location: null,
-        date: "Dec 27th",
-        tags: null
-      },
-      {
-        id: 3,
-        author: "colthurst",
-        title: "To-Do List",
-        body:
-          "Originally I was going to make a to-do list, but I think a note taking app will be much better",
-        location: null,
-        date: "Dec 27th",
-        tags: null
-      }
-    ]
+    notes: []
+  };
+
+  componentWillMount() {
+    const firebaseRef = firebase.database().ref("notes");
+    this.getNoteData(firebaseRef);
+  }
+
+  getNoteData = async firebaseRef => {
+    const fire = await firebaseRef.once("value").then(function(snapshot) {
+      return snapshot.val();
+    });
+
+    const firebaseArr = Object.keys(fire).map(key => {
+      return fire[key];
+    });
+    this.setState({ notes: firebaseArr, selectedNote: firebaseArr[0] });
   };
 
   onNoteSelect = note => {
     this.setState({ selectedNote: note });
   };
+
   onUpdateNoteTitle = text => {
     let newNote = { ...this.state.selectedNote };
     newNote.title = text;
-    console.log(newNote);
     this.setState({ selectedNote: newNote });
   };
+
   onUpdateNoteBody = text => {
     let newNote = { ...this.state.selectedNote };
     newNote.body = text;
     this.setState({ selectedNote: newNote });
   };
+
   onAddNote = () => {
-    let id = this.state.notes.length + 1;
+    let firebaseRef = firebase.database().ref("notes");
+    let newNoteKey = firebase
+      .database()
+      .ref()
+      .child("notes")
+      .push().key;
+    let time = +new Date();
+
     const note = {
-      id: id,
+      id: newNoteKey,
       title: "Untitled",
       body: "",
-      location: null,
-      date: null,
-      tags: null
+      dateCreated: time,
+      lastEdited: time
     };
+
     this.setState({
       selectedNote: note,
       notes: [...this.state.notes, note]
     });
+
+    firebase
+      .database()
+      .ref()
+      .child("notes/" + newNoteKey)
+      .set(note);
   };
+
   onNoteSave = note => {
+    // add to firebase
+    note.lastEdited = +new Date();
+    console.log(note);
+    let firebaseRef = firebase.database().ref("notes");
+    let id = this.state.selectedNote.id;
     let newNoteList = this.state.notes;
+
     for (let i = 0; i < newNoteList.length; i++) {
       if (note.id === newNoteList[i].id) {
         newNoteList[i] = note;
         this.setState({ notes: newNoteList });
-        return;
       }
     }
+
+    firebase
+      .database()
+      .ref()
+      .child("notes/" + id)
+      .set(note);
   };
 
   render() {
@@ -107,7 +113,7 @@ class App extends Component {
         <div>
           <MDBContainer fluid>
             <MDBRow>
-              <MDBCol size="4">
+              <MDBCol size="4" className="pr-0">
                 <NoteList
                   notes={this.state.notes}
                   onNoteSelect={this.onNoteSelect}

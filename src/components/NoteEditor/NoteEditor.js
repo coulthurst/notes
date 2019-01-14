@@ -5,7 +5,8 @@ import {
   MDBCardText,
   MDBCardBody,
   MDBCardHeader,
-  MDBBtn
+  MDBBtn,
+  MDBIcon
 } from "mdbreact";
 
 class NoteEditor extends Component {
@@ -24,7 +25,7 @@ class NoteEditor extends Component {
   render() {
     return (
       <div className="note-editor">
-        <MDBCard style={{ marginTop: "1rem" }}>
+        <MDBCard>
           <MDBCardHeader className="note-title">
             <input
               value={this.props.note.title}
@@ -32,12 +33,24 @@ class NoteEditor extends Component {
               onBlur={this.onNoteSave}
               type="text"
               style={{
-                width: "100%",
+                width: "auto",
                 backgroundColor: "transparent",
                 color: "#fff",
                 border: "none"
               }}
             />
+            <MDBIcon
+              icon="trash-o"
+              className="fa-2x"
+              style={{ float: "right" }}
+            />
+            {/* <MDBIcon
+              icon="ellipsis-v"
+              className="fa-2x"
+              style={{ float: "right" }}
+            /> */}
+
+            <MDBIcon icon="save" className="fa-2x" style={{ float: "right" }} />
           </MDBCardHeader>
           <MDBCardBody className="note-body">
             <MDBCardText>
@@ -57,7 +70,8 @@ class NoteEditor extends Component {
           </MDBCardBody>
         </MDBCard>
         <MDBBtn id="btn--add" onClick={this.onAddNote}>
-          Add Note
+          <MDBIcon icon="plus" />
+          &nbsp;&nbsp;&nbsp;Add Note
         </MDBBtn>
       </div>
     );
