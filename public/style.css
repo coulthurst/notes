@@ -1,3 +1,5 @@
+/* color palatte is default from flatui */
+
 body {
   background-color: rgb(42, 45, 53) !important;
 }
@@ -10,7 +12,7 @@ body {
 .note-title,
 .note-title input,
 .note-body,
-.note-body textarea {
+.note-body .quill {
   background-color: rgb(35, 36, 42) !important;
   color: #7f8c8d !important;
 }
@@ -33,14 +35,18 @@ body {
   color: #2ecc71 !important;
   font-size: 32px !important;
 }
-
-.note-body textarea {
+.note-body {
+  padding-left: 0 !important;
+  padding-top: 0 !important;
+  padding-right: 0 !important;
+}
+.note-body .quill {
   height: calc(100vh - 210px);
   resize: none;
   font-size: 18px;
+  border: none;
 }
 
-.note-body textarea:focus,
 .note-title input:focus {
   outline: none;
 }
@@ -87,4 +93,38 @@ i.fa.fa-trash-o.fa-2x:hover {
 .note-list .list-group {
   height: calc(100vh - 130px);
   overflow: scroll;
+}
+.ql-toolbar.ql-snow {
+  border: none;
+  border-bottom: 1px solid rgb(42, 45, 53);
+}
+.ql-container.ql-snow {
+  border: none;
+  font-size: 16px;
+}
+.ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label,
+.ql-toolbar.ql-snow .ql-picker-options {
+  border: none;
+}
+.ql-snow .ql-picker.ql-expanded .ql-picker-options {
+  padding: 0.25em 1.25em;
+}
+.ql-snow .ql-picker-options {
+  color: #7f8c8d !important;
+
+  background-color: rgb(35, 36, 42) !important;
+}
+.ql-snow.ql-toolbar button:hover,
+.ql-snow .ql-toolbar button:hover,
+.ql-snow.ql-toolbar button.ql-active,
+.ql-snow .ql-toolbar button.ql-active,
+.ql-snow.ql-toolbar .ql-picker-label:hover,
+.ql-snow .ql-toolbar .ql-picker-label:hover,
+.ql-snow.ql-toolbar .ql-picker-label.ql-active,
+.ql-snow .ql-toolbar .ql-picker-label.ql-active,
+.ql-snow.ql-toolbar .ql-picker-item:hover,
+.ql-snow .ql-toolbar .ql-picker-item:hover,
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected,
+.ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+  color: #27ae60 !important;
 }

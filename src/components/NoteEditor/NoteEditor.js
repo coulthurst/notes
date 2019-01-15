@@ -8,21 +8,37 @@ import {
   MDBBtn,
   MDBIcon
 } from "mdbreact";
+import ReactQuill, { Quill, Mixin, Toolbar } from "react-quill"; // ES6
 
 class NoteEditor extends Component {
+  state = {
+    text: ""
+  };
+
+  componentDidMount() {
+    console.log("did");
+    console.log(this.props);
+    this.setState({ text: this.props.note.body });
+  }
   onTitleInputChange = e => {
     this.props.onUpdateNoteTitle(e.target.value);
   };
-  onBodyInputChange = e => {
-    this.props.onUpdateNoteBody(e.target.value);
+  onChange = value => {
+    this.setState({ text: value });
+    // this.props.onUpdateNoteBody(this.props.note.body);
   };
   onNoteSave = () => {
-    this.props.onNoteSave(this.props.note);
+    let note = this.props.note;
+    note.body = this.state.text;
+    this.props.onNoteSave(note);
   };
   onAddNote = () => {
     this.props.onAddNote();
   };
   render() {
+    console.log("asdf");
+    console.log(this.props);
+
     return (
       <div className="note-editor">
         <MDBCard>
@@ -50,11 +66,22 @@ class NoteEditor extends Component {
               style={{ float: "right" }}
             /> */}
 
-            <MDBIcon icon="save" className="fa-2x" style={{ float: "right" }} />
+            <MDBIcon
+              icon="save"
+              className="fa-2x"
+              style={{ float: "right" }}
+              onClick={this.onNoteSave}
+            />
           </MDBCardHeader>
           <MDBCardBody className="note-body">
             <MDBCardText>
-              <textarea
+              <ReactQuill
+                defaultValue={this.props.note.body}
+                value={this.state.text}
+                onChange={this.onChange}
+                ref={this.ref}
+              />
+              {/* <textarea
                 value={this.props.note.body}
                 onChange={this.onBodyInputChange}
                 onBlur={this.onNoteSave}
@@ -64,7 +91,7 @@ class NoteEditor extends Component {
                   backgroundColor: "transparent",
                   border: "none"
                 }}
-              />
+              /> */}
             </MDBCardText>
             {/* <MDBBtn color="deep-orange">go somewhere</MDBBtn> */}
           </MDBCardBody>

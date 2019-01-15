@@ -10,7 +10,7 @@ const Note = ({ note, onNoteSelect }) => {
       <div className="d-flex w-100 justify-content-between">
         <h3 className="mb-1">{note.title}</h3>
       </div>
-      <p className="mb-1">{note.body.substring(0, 40)}...</p>
+      <p className="mb-1">Last edited: {note.lastEdited}</p>
     </MDBListGroupItem>
   );
 };

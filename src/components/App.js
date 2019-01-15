@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import firebase from "../fire";
-
 import NavBar from "./NavBar/NavBar";
 import NoteList from "./NoteList/NoteList";
 import NoteEditor from "./NoteEditor/NoteEditor";
@@ -84,8 +83,12 @@ class App extends Component {
 
   onNoteSave = note => {
     // add to firebase
-    note.lastEdited = +new Date();
-    console.log(note);
+    var dateObj = new Date();
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate();
+    var year = dateObj.getUTCFullYear();
+
+    note.lastEdited = `${month}/${day}/${year}`;
     let firebaseRef = firebase.database().ref("notes");
     let id = this.state.selectedNote.id;
     let newNoteList = this.state.notes;
