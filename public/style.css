@@ -41,7 +41,7 @@ body {
   padding-right: 0 !important;
 }
 .note-body .quill {
-  height: calc(100vh - 210px);
+  height: calc(100vh - 190px);
   resize: none;
   font-size: 18px;
   border: none;
@@ -91,8 +91,8 @@ i.fa.fa-trash-o.fa-2x:hover {
   cursor: pointer;
 }
 .note-list .list-group {
-  height: calc(100vh - 130px);
-  overflow: scroll;
+  height: calc(100vh - 135px);
+  overflow-y: scroll;
 }
 .ql-toolbar.ql-snow {
   border: none;

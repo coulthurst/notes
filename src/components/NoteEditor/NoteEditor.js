@@ -8,37 +8,31 @@ import {
   MDBBtn,
   MDBIcon
 } from "mdbreact";
-import ReactQuill, { Quill, Mixin, Toolbar } from "react-quill"; // ES6
+import ReactQuill, { Quill, Mixin, Toolbar } from "react-quill";
 
 class NoteEditor extends Component {
-  state = {
-    text: ""
-  };
-
-  componentDidMount() {
-    console.log("did");
-    console.log(this.props);
-    this.setState({ text: this.props.note.body });
+  constructor(props) {
+    super(props);
+    this.onHandleChange = this.onHandleChange.bind(this);
   }
+
   onTitleInputChange = e => {
     this.props.onUpdateNoteTitle(e.target.value);
   };
-  onChange = value => {
-    this.setState({ text: value });
+  onHandleChange = value => {
+    this.props.note.body = value;
+    // this.setState({ text: value });
     // this.props.onUpdateNoteBody(this.props.note.body);
   };
   onNoteSave = () => {
-    let note = this.props.note;
-    note.body = this.state.text;
-    this.props.onNoteSave(note);
+    // let note = this.props.note;
+    // note.body = this.state.text;
+    this.props.onNoteSave(this.props.note);
   };
   onAddNote = () => {
     this.props.onAddNote();
   };
   render() {
-    console.log("asdf");
-    console.log(this.props);
-
     return (
       <div className="note-editor">
         <MDBCard>
@@ -76,10 +70,8 @@ class NoteEditor extends Component {
           <MDBCardBody className="note-body">
             <MDBCardText>
               <ReactQuill
-                defaultValue={this.props.note.body}
-                value={this.state.text}
-                onChange={this.onChange}
-                ref={this.ref}
+                value={this.props.note.body}
+                onChange={this.onHandleChange}
               />
               {/* <textarea
                 value={this.props.note.body}

@@ -47,6 +47,7 @@ class App extends Component {
   };
 
   onUpdateNoteBody = text => {
+    console.log(text);
     let newNote = { ...this.state.selectedNote };
     newNote.body = text;
     this.setState({ selectedNote: newNote });
@@ -83,6 +84,7 @@ class App extends Component {
 
   onNoteSave = note => {
     // add to firebase
+    console.log(note.id);
     var dateObj = new Date();
     var month = dateObj.getUTCMonth() + 1; //months from 1-12
     var day = dateObj.getUTCDate();
