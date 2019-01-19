@@ -21,13 +21,12 @@ class NoteEditor extends Component {
   };
   onHandleChange = value => {
     this.props.note.body = value;
-    // this.setState({ text: value });
-    // this.props.onUpdateNoteBody(this.props.note.body);
   };
   onNoteSave = () => {
-    // let note = this.props.note;
-    // note.body = this.state.text;
     this.props.onNoteSave(this.props.note);
+  };
+  onNoteDelete = () => {
+    this.props.onNoteDelete(this.props.note);
   };
   onAddNote = () => {
     this.props.onAddNote();
@@ -53,6 +52,7 @@ class NoteEditor extends Component {
               icon="trash-o"
               className="fa-2x"
               style={{ float: "right" }}
+              onClick={this.onNoteDelete}
             />
             {/* <MDBIcon
               icon="ellipsis-v"

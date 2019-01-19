@@ -4,34 +4,44 @@ import {
   NavbarBrand,
   NavbarNav,
   NavbarToggler,
-  Collapse,
-  NavItem,
-  NavLink
+  MDBIcon,
+  MDBContainer,
+  MDBRow
 } from "mdbreact";
 
 class Nav extends React.Component {
-  state = {
-    isOpen: false,
-    collapseID: ""
-  };
-
-  toggleCollapse = collapseID => () => {
-    this.setState(prevState => ({
-      collapseID: prevState.collapseID !== collapseID ? collapseID : ""
-    }));
-  };
+  toggleSideNav() {
+    console.log("asdf");
+    document.querySelector(".sideNav").classList.toggle("open");
+  }
 
   render() {
     return (
-      <Navbar dark>
-        <NavbarToggler onClick={this.toggleCollapse("navbarCollapse1")} />
-        <NavbarNav left />
-        <NavbarNav right>
-          <NavbarBrand>
-            <strong style={{ color: "#2ecc71" }}>NOTES</strong>
-          </NavbarBrand>
-        </NavbarNav>
-      </Navbar>
+      <div>
+        <Navbar dark>
+          <NavbarToggler onClick={this.toggleSideNav} />
+          <NavbarNav left />
+          <NavbarNav right>
+            <NavbarBrand>
+              <strong style={{ color: "#2ecc71" }}>NOTES</strong>
+            </NavbarBrand>
+          </NavbarNav>
+        </Navbar>
+        <div className="sideNav">
+          <div className="sideNav--banner">
+            <div className="icon-bg">
+              <MDBIcon icon="user-circle" className="fa-5x" />
+            </div>
+            <MDBContainer className="sideNav--container">
+              <MDBRow>
+                <a href="#" id="btn--sign-in">
+                  Sign in with Google
+                </a>
+              </MDBRow>
+            </MDBContainer>
+          </div>
+        </div>
+      </div>
     );
   }
 }

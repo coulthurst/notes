@@ -30,10 +30,15 @@ class App extends Component {
       return snapshot.val();
     });
 
-    const firebaseArr = Object.keys(fire).map(key => {
-      return fire[key];
-    });
-    this.setState({ notes: firebaseArr, selectedNote: firebaseArr[0] });
+    if (fire != null) {
+      const firebaseArr = Object.keys(fire).map(key => {
+        return fire[key];
+      });
+
+      this.setState({ notes: firebaseArr, selectedNote: firebaseArr[0] });
+    } else {
+      this.onAddNote();
+    }
   };
 
   onNoteSelect = note => {
@@ -47,27 +52,28 @@ class App extends Component {
   };
 
   onUpdateNoteBody = text => {
-    console.log(text);
     let newNote = { ...this.state.selectedNote };
     newNote.body = text;
     this.setState({ selectedNote: newNote });
   };
 
   onAddNote = () => {
-    let firebaseRef = firebase.database().ref("notes");
     let newNoteKey = firebase
       .database()
       .ref()
       .child("notes")
       .push().key;
-    let time = +new Date();
+    let dateObj = new Date();
+    let month = dateObj.getUTCMonth() + 1; //months from 1-12
+    let day = dateObj.getUTCDate();
+    let year = dateObj.getUTCFullYear();
 
     const note = {
       id: newNoteKey,
       title: "Untitled",
       body: "",
-      dateCreated: time,
-      lastEdited: time
+      dateCreated: `${month}/${day}/${year}`,
+      lastEdited: `${month}/${day}/${year}`
     };
 
     this.setState({
@@ -84,14 +90,12 @@ class App extends Component {
 
   onNoteSave = note => {
     // add to firebase
-    console.log(note.id);
-    var dateObj = new Date();
-    var month = dateObj.getUTCMonth() + 1; //months from 1-12
-    var day = dateObj.getUTCDate();
-    var year = dateObj.getUTCFullYear();
+    let dateObj = new Date();
+    let month = dateObj.getUTCMonth() + 1; //months from 1-12
+    let day = dateObj.getUTCDate();
+    let year = dateObj.getUTCFullYear();
 
     note.lastEdited = `${month}/${day}/${year}`;
-    let firebaseRef = firebase.database().ref("notes");
     let id = this.state.selectedNote.id;
     let newNoteList = this.state.notes;
 
@@ -107,6 +111,16 @@ class App extends Component {
       .ref()
       .child("notes/" + id)
       .set(note);
+  };
+
+  onNoteDelete = note => {
+    firebase
+      .database()
+      .ref()
+      .child("notes/" + note.id)
+      .remove();
+
+    this.getNoteData(firebase.database().ref("notes"));
   };
 
   render() {
@@ -131,6 +145,7 @@ class App extends Component {
                   onUpdateNoteTitle={this.onUpdateNoteTitle}
                   onUpdateNoteBody={this.onUpdateNoteBody}
                   onNoteSave={this.onNoteSave}
+                  onNoteDelete={this.onNoteDelete}
                   onAddNote={this.onAddNote}
                 />
               </MDBCol>
