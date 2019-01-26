@@ -1,10 +1,10 @@
 /* color palatte is default from flatui */
 
 body {
-	background-color: rgb(42, 45, 53) !important;
+  background-color: rgb(42, 45, 53) !important;
 }
 .navbar {
-	margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 .note-list .card-body,
 .note-list li,
@@ -13,105 +13,121 @@ body {
 .note-title input,
 .note-body,
 .note-body .quill {
-	background-color: rgb(35, 36, 42) !important;
-	color: #7f8c8d !important;
+  background-color: rgb(35, 36, 42) !important;
+  color: #7f8c8d !important;
 }
 .note-list li {
-	border: 1px solid rgb(42, 45, 53);
-	border-left: none;
-	border-right: none;
+  border: 1px solid rgb(42, 45, 53) !important;
+  border-left: none !important;
+  border-right: none !important;
 }
-.note-list li:first-of-type {
-	border-top: none;
-}
-.note-list li:last-of-type {
-	border-bottom: none;
-}
-.note-list li h3 {
-	color: #2ecc71 !important;
+.list-group-item.sideNav--container-btn {
+  border: 1px solid rgb(35, 36, 42) !important;
+  border-left: none !important;
+  border-right: none !important;
 }
 
+.list-group-item.sideNav--container-btn:first-of-type,
+.note-list li:first-of-type {
+  border-top: none !important;
+}
+.list-group-item.sideNav--container-btn:last-of-type,
+.note-list li:last-of-type {
+  border-bottom: none !important;
+}
+.note-list li h3 {
+  color: #2ecc71 !important;
+}
+.note-editor {
+  margin-bottom: 15px;
+  height: calc(100vh - 90px);
+  overflow-y: scroll;
+  border-radius: 3px;
+}
+.note-list--overflow {
+  height: calc(100vh - 200px);
+  overflow-y: scroll;
+}
+.note-editor::-webkit-scrollbar,
+.note-list--overflow::-webkit-scrollbar {
+  width: 0;
+}
 .note-title input {
-	color: #2ecc71 !important;
-	font-size: 32px !important;
+  color: #2ecc71 !important;
+  font-size: 32px !important;
 }
 .note-body {
-	padding-left: 0 !important;
-	padding-top: 0 !important;
-	padding-right: 0 !important;
+  padding: 0 0 2.25em 0 !important;
 }
 .note-body .quill {
-	/* height: calc(100vh - 190px);
+  /* height: calc(100vh - 190px);
   resize: none; */
-	font-size: 18px;
-	border: none;
+  font-size: 18px;
+  border: none;
 }
 
 .note-title input:focus {
-	outline: none;
+  outline: none;
 }
 
 .note-editor .card-header {
-	border-bottom: 1px solid rgb(42, 45, 53);
+  border-bottom: 1px solid rgb(42, 45, 53);
 }
 
 #btn--add {
-	position: fixed;
-	right: 1.25em;
-	bottom: 1.25em;
-	font-size: 1.1em;
-	background-color: #2ecc71 !important;
-	border-radius: 40px;
-	color: rgb(35, 36, 42) !important;
+  position: fixed;
+  right: 1.25em;
+  bottom: 1.25em;
+  font-size: 1.1em;
+  background-color: #2ecc71 !important;
+  border-radius: 40px;
+  color: rgb(35, 36, 42) !important;
 }
 #btn--add:hover {
-	background-color: #27ae60 !important;
+  background-color: #27ae60 !important;
 }
-.fa-save,
-.fa-trash-o {
-	margin-left: 1.25rem;
+.note-editor .fa-save,
+.note-editor .fa-trash-o {
+  margin-left: 1.25rem;
 }
-.fa-save:before,
-.fa-floppy-o:before,
-.fa-trash-o:before {
-	content: "\F0C7";
-	line-height: 50px;
-	transition: 0.2s ease-in-out;
+.note-editor .fa-save:before,
+.note-editor .fa-floppy-o:before,
+.note-editor .fa-trash-o:before {
+  content: "\F0C7";
+  line-height: 50px;
+  transition: 0.2s ease-in-out;
 }
 .fa-ellipsis-v:before {
-	line-height: 50px;
-	cursor: pointer;
+  line-height: 50px;
+  cursor: pointer;
 }
 i.fa.fa-save.fa-2x:hover {
-	color: #27ae60 !important;
-	cursor: pointer;
+  color: #27ae60 !important;
+  cursor: pointer;
 }
 i.fa.fa-trash-o.fa-2x:hover {
-	color: #e74c3c !important;
-	cursor: pointer;
+  color: #e74c3c !important;
+  cursor: pointer;
 }
-.note-list .list-group {
-	height: calc(100vh - 135px);
-	overflow-y: scroll;
-}
+
 .ql-toolbar.ql-snow {
-	border: none;
-	border-bottom: 1px solid rgb(42, 45, 53);
+  border: none;
+  border-bottom: 1px solid rgb(42, 45, 53);
 }
 .ql-container.ql-snow {
-	border: none;
-	font-size: 16px;
+  border: none;
+  font-size: 16px;
 }
 .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label,
 .ql-toolbar.ql-snow .ql-picker-options {
-	border: none;
+  border: none;
 }
 .ql-snow .ql-picker.ql-expanded .ql-picker-options {
-	padding: 0.25em 1.25em;
+  padding: 0.25em 1.25em;
 }
 .ql-snow .ql-picker-options {
-	color: #7f8c8d !important;
-	background-color: rgb(35, 36, 42) !important;
+  color: #7f8c8d !important;
+  background-color: rgb(35, 36, 42) !important;
 }
 .ql-snow.ql-toolbar button:hover,
 .ql-snow .ql-toolbar button:hover,
@@ -125,58 +141,158 @@ i.fa.fa-trash-o.fa-2x:hover {
 .ql-snow .ql-toolbar .ql-picker-item:hover,
 .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
-	color: #27ae60 !important;
+  color: #27ae60 !important;
 }
 .Toastify__toast--success {
-	background-color: #27ae60 !important;
-	border-radius: 4px !important;
+  background-color: rgba(39, 174, 96, 0.8) !important;
+  border-radius: 4px !important;
 }
 .sideNav {
-	display: block;
-	position: fixed;
-	height: calc(100vh - 56px);
-	width: 350px;
-	color: #7f8c8d !important;
-	background-color: rgb(42, 45, 53) !important;
-	z-index: 9999;
-	top: 56px;
-	left: -350px;
-	transition: 0.2s ease-in-out;
-	box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.16),
-		0 2px 10px 10px rgba(0, 0, 0, 0.12);
+  display: block;
+  position: fixed;
+  height: 100vh;
+  width: 350px;
+  color: #7f8c8d !important;
+  background-color: rgb(42, 45, 53) !important;
+  z-index: 9999;
+  top: 0px;
+  left: -350px;
+  transition: 0.2s ease-in-out;
 }
 .sideNav.open {
-	left: 0;
+  left: 0;
+  box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.16),
+    0 2px 10px 10px rgba(0, 0, 0, 0.12);
 }
 .sideNav--banner {
-	display: block;
-	position: relative;
-	float: left;
-	width: 100%;
-	height: 150px;
-	background: #27ae60;
+  display: block;
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 150px;
+  background: #27ae60;
 }
 .icon-bg {
-	display: block;
-	position: absolute;
-	top: 100px;
-	left: 50%;
-	transform: translateX(-50%);
-	background: #aaa;
-	height: 85px;
-	width: 85px;
-	text-align: center;
-	padding: 2.5px;
-	border-radius: 50%;
-	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+  display: block;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #aaa;
+  height: 85px;
+  width: 85px;
+  text-align: center;
+  padding: 2.5px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
 }
 
 .sideNav--container {
-	position: relative;
-	top: 200px;
+  position: relative;
+  top: 200px;
 }
 #btn--sign-in {
-	margin-left: 50%;
-	transform: translateX(-50%);
-	color: #7f8c8d;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  color: #7f8c8d;
+}
+.navbar.navbar-dark .navbar-toggler {
+  z-index: 9999999;
+}
+
+.md-form input[type="text"]:focus:not([readonly]),
+.md-form input[type="password"]:focus:not([readonly]),
+.md-form input[type="email"]:focus:not([readonly]),
+.md-form input[type="url"]:focus:not([readonly]),
+.md-form input[type="time"]:focus:not([readonly]),
+.md-form input[type="date"]:focus:not([readonly]),
+.md-form input[type="datetime-local"]:focus:not([readonly]),
+.md-form input[type="tel"]:focus:not([readonly]),
+.md-form input[type="number"]:focus:not([readonly]),
+.md-form input[type="search-md"]:focus:not([readonly]),
+.md-form input[type="search"]:focus:not([readonly]),
+.md-form textarea.md-textarea:focus:not([readonly]) {
+  box-shadow: 0 1px 0 0 #27ae60 !important;
+  border-bottom: 1px solid #27ae60 !important;
+}
+.note-list input,
+.md-form .prefix.active,
+.md-form input[type="text"]:focus:not([readonly]) + label,
+.md-form input[type="password"]:focus:not([readonly]) + label,
+.md-form input[type="email"]:focus:not([readonly]) + label,
+.md-form input[type="url"]:focus:not([readonly]) + label,
+.md-form input[type="time"]:focus:not([readonly]) + label,
+.md-form input[type="date"]:focus:not([readonly]) + label,
+.md-form input[type="datetime-local"]:focus:not([readonly]) + label,
+.md-form input[type="tel"]:focus:not([readonly]) + label,
+.md-form input[type="number"]:focus:not([readonly]) + label,
+.md-form input[type="search-md"]:focus:not([readonly]) + label,
+.md-form input[type="search"]:focus:not([readonly]) + label,
+.md-form textarea.md-textarea:focus:not([readonly]) + label {
+  color: #27ae60 !important;
+}
+
+.note-list--search_container {
+  margin-top: 0.5rem !important;
+}
+
+.md-form input[type="text"],
+.md-form input[type="password"],
+.md-form input[type="email"],
+.md-form input[type="url"],
+.md-form input[type="time"],
+.md-form input[type="date"],
+.md-form input[type="datetime-local"],
+.md-form input[type="tel"],
+.md-form input[type="number"],
+.md-form input[type="search-md"],
+.md-form input[type="search"],
+.md-form textarea.md-textarea {
+  border-bottom: 1px solid rgb(42, 45, 53) !important;
+}
+.sideNav button.navbar-toggler {
+  top: 13px;
+  position: absolute;
+  left: 21px;
+  color: #fff;
+}
+.sideNav button.navbar-toggler:focus {
+  outline: none;
+}
+
+.sideNav--container-btn {
+  background-color: rgb(42, 45, 53) !important;
+  color: #7f8c8d !important;
+  transition: 0.2s ease-in-out;
+}
+.list-group-item.sideNav--container-btn:hover {
+  cursor: pointer;
+  color: #fff !important;
+}
+
+.ql-snow.ql-toolbar button:hover .ql-stroke,
+.ql-snow .ql-toolbar button:hover .ql-stroke,
+.ql-snow.ql-toolbar button.ql-active .ql-stroke,
+.ql-snow .ql-toolbar button.ql-active .ql-stroke,
+.ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke,
+.ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke,
+.ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+.ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+.ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke,
+.ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke,
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
+.ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
+.ql-snow.ql-toolbar button:hover .ql-stroke-mitter,
+.ql-snow .ql-toolbar button:hover .ql-stroke-mitter,
+.ql-snow.ql-toolbar button.ql-active .ql-stroke-mitter,
+.ql-snow .ql-toolbar button.ql-active .ql-stroke-mitter,
+.ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke-mitter,
+.ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke-mitter,
+.ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke-mitter,
+.ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke-mitter,
+.ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke-mitter,
+.ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke-mitter,
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-mitter,
+.ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-mitter {
+  stroke: #27ae60 !important;
 }

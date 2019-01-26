@@ -10,175 +10,171 @@ import NoteEditor from "./NoteEditor/NoteEditor";
 // fire base
 
 class App extends Component {
-	state = {
-		selectedNote: {
-			id: null,
-			title: "",
-			body: "",
-			location: null,
-			date: null,
-			tags: null
-		},
-		notes: []
-	};
+  state = {
+    selectedNote: {
+      id: null,
+      title: "",
+      body: "",
+      location: null,
+      date: null,
+      tags: null
+    },
+    notes: []
+  };
 
-	componentWillMount() {
-		const firebaseRef = firebase.database().ref("notes");
-		this.getNoteData(firebaseRef);
-	}
+  componentWillMount() {
+    const firebaseRef = firebase.database().ref("notes");
+    this.getNoteData(firebaseRef);
+  }
 
-	getNoteData = async firebaseRef => {
-		const fire = await firebaseRef.once("value").then(function(snapshot) {
-			return snapshot.val();
-		});
+  getNoteData = async firebaseRef => {
+    const fire = await firebaseRef.once("value").then(function(snapshot) {
+      return snapshot.val();
+    });
 
-		if (fire != null) {
-			const firebaseArr = Object.keys(fire).map(key => {
-				return fire[key];
-			});
+    if (fire != null) {
+      const firebaseArr = Object.keys(fire).map(key => {
+        return fire[key];
+      });
 
-			this.setState({ notes: firebaseArr, selectedNote: firebaseArr[0] });
-		} else {
-			this.onAddNote();
-		}
-	};
+      this.setState({ notes: firebaseArr, selectedNote: firebaseArr[0] });
+    } else {
+      this.onAddNote();
+    }
+  };
 
-	onNoteSelect = note => {
-		this.setState({ selectedNote: note });
-	};
+  onNoteSelect = note => {
+    this.setState({ selectedNote: note });
+  };
 
-	onUpdateNoteTitle = text => {
-		let newNote = { ...this.state.selectedNote };
-		newNote.title = text;
-		this.setState({ selectedNote: newNote });
-	};
+  onUpdateNoteTitle = text => {
+    let newNote = { ...this.state.selectedNote };
+    newNote.title = text;
+    this.setState({ selectedNote: newNote });
+  };
 
-	onUpdateNoteBody = text => {
-		let newNote = { ...this.state.selectedNote };
-		newNote.body = text;
-		this.setState({ selectedNote: newNote });
-	};
+  onUpdateNoteBody = text => {
+    let newNote = { ...this.state.selectedNote };
+    newNote.body = text;
+    this.setState({ selectedNote: newNote });
+  };
 
-	onAddNote = () => {
-		let newNoteKey = firebase
-			.database()
-			.ref()
-			.child("notes")
-			.push().key;
-		let dateObj = new Date();
-		let month = dateObj.getUTCMonth() + 1; //months from 1-12
-		let day = dateObj.getUTCDate();
-		let year = dateObj.getUTCFullYear();
+  onAddNote = () => {
+    let newNoteKey = firebase
+      .database()
+      .ref()
+      .child("notes")
+      .push().key;
+    let dateObj = new Date();
+    let month = dateObj.getUTCMonth() + 1; //months from 1-12
+    let day = dateObj.getUTCDate();
+    let year = dateObj.getUTCFullYear();
 
-		const note = {
-			id: newNoteKey,
-			title: "Untitled",
-			body: "",
-			dateCreated: `${month}/${day}/${year}`,
-			lastEdited: `${month}/${day}/${year}`
-		};
+    const note = {
+      id: newNoteKey,
+      title: "Untitled",
+      body: "",
+      dateCreated: `${month}/${day}/${year}`,
+      lastEdited: `${month}/${day}/${year}`
+    };
 
-		this.setState({
-			selectedNote: note,
-			notes: [...this.state.notes, note]
-		});
+    this.setState({
+      selectedNote: note,
+      notes: [...this.state.notes, note]
+    });
 
-		firebase
-			.database()
-			.ref()
-			.child("notes/" + newNoteKey)
-			.set(note);
-	};
+    firebase
+      .database()
+      .ref()
+      .child("notes/" + newNoteKey)
+      .set(note);
+  };
 
-	onNoteSave = note => {
-		// add to firebase
-		let dateObj = new Date();
-		let month = dateObj.getUTCMonth() + 1; //months from 1-12
-		let day = dateObj.getUTCDate();
-		let year = dateObj.getUTCFullYear();
+  onNoteSave = note => {
+    // add to firebase
+    let dateObj = new Date();
+    let month = dateObj.getUTCMonth() + 1; //months from 1-12
+    let day = dateObj.getUTCDate();
+    let year = dateObj.getUTCFullYear();
 
-		note.lastEdited = `${month}/${day}/${year}`;
-		let id = this.state.selectedNote.id;
-		let newNoteList = this.state.notes;
+    note.lastEdited = `${month}/${day}/${year}`;
+    let id = this.state.selectedNote.id;
+    let newNoteList = this.state.notes;
 
-		for (let i = 0; i < newNoteList.length; i++) {
-			if (note.id === newNoteList[i].id) {
-				newNoteList[i] = note;
-				this.setState({ notes: newNoteList });
-			}
-		}
+    for (let i = 0; i < newNoteList.length; i++) {
+      if (note.id === newNoteList[i].id) {
+        newNoteList[i] = note;
+        this.setState({ notes: newNoteList });
+      }
+    }
 
-		firebase
-			.database()
-			.ref()
-			.child("notes/" + id)
-			.set(note);
+    firebase
+      .database()
+      .ref()
+      .child("notes/" + id)
+      .set(note);
 
-		toast.success("Note Saved Succesfully!", {
-			position: "top-right",
-			autoClose: 5000,
-			hideProgressBar: true,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true
-		});
-	};
+    toast.success("Note Saved Succesfully!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true
+    });
+  };
 
-	onNoteDelete = note => {
-		firebase
-			.database()
-			.ref()
-			.child("notes/" + note.id)
-			.remove();
+  onNoteDelete = note => {
+    firebase
+      .database()
+      .ref()
+      .child("notes/" + note.id)
+      .remove();
 
-		this.getNoteData(firebase.database().ref("notes"));
-	};
+    this.getNoteData(firebase.database().ref("notes"));
+  };
 
-	render() {
-		return (
-			<div>
-				<div>
-					<NavBar />
-				</div>
-				<div>
-					<MDBContainer fluid>
-						<MDBRow>
-							{/* <MDBCol size='4' className='pr-0'>
-								<NoteList
-									notes={this.state.notes}
-									onNoteSelect={this.onNoteSelect}
-								/>
-							</MDBCol> */}
+  render() {
+    return (
+      <div>
+        <div>
+          <NavBar
+            notes={this.state.notes}
+            note={this.state.selectedNote}
+            onNoteSelect={this.onNoteSelect}
+            onNoteSave={this.onNoteSave}
+            onNoteDelete={this.onNoteDelete}
+            onAddNote={this.onAddNote}
+          />
+        </div>
+        <div>
+          <MDBContainer fluid style={{ marginTop: "70px" }}>
+            <MDBRow>
+              <MDBCol size="4" className="pr-0">
+                <NoteList
+                  notes={this.state.notes}
+                  onNoteSelect={this.onNoteSelect}
+                />
+              </MDBCol>
 
-							<MDBCol size='12'>
-								<NoteEditor
-									note={this.state.selectedNote}
-									onUpdateNoteTitle={this.onUpdateNoteTitle}
-									onUpdateNoteBody={this.onUpdateNoteBody}
-									onNoteSave={this.onNoteSave}
-									onNoteDelete={this.onNoteDelete}
-									onAddNote={this.onAddNote}
-								/>
-							</MDBCol>
-						</MDBRow>
-					</MDBContainer>
-				</div>
-				<ToastContainer
-					position='top-right'
-					autoClose={5000}
-					hideProgressBar={true}
-					newestOnTop={false}
-					closeOnClick
-					rtl={false}
-					pauseOnVisibilityChange
-					draggable
-					pauseOnHover
-				/>
-				{/* Same as */}
-				<ToastContainer />
-			</div>
-		);
-	}
+              <MDBCol size="8">
+                <NoteEditor
+                  note={this.state.selectedNote}
+                  onUpdateNoteTitle={this.onUpdateNoteTitle}
+                  onUpdateNoteBody={this.onUpdateNoteBody}
+                  onNoteSave={this.onNoteSave}
+                  onNoteDelete={this.onNoteDelete}
+                  onAddNote={this.onAddNote}
+                />
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
+        </div>
+
+        <ToastContainer />
+      </div>
+    );
+  }
 }
 
 export default App;
