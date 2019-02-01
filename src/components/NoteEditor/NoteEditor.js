@@ -34,7 +34,7 @@ class NoteEditor extends Component {
   render() {
     return (
       <div className="note-editor">
-        <MDBCard>
+        <MDBCard id="note-editor--card">
           <MDBCardHeader className="note-title">
             <input
               value={this.props.note.title}
@@ -68,12 +68,11 @@ class NoteEditor extends Component {
             /> */}
           </MDBCardHeader>
           <MDBCardBody className="note-body">
-            <MDBCardText>
-              <ReactQuill
-                value={this.props.note.body}
-                onChange={this.onHandleChange}
-              />
-              {/* <textarea
+            <ReactQuill
+              value={this.props.note.body}
+              onChange={this.onHandleChange}
+            />
+            {/* <textarea
                 value={this.props.note.body}
                 onChange={this.onBodyInputChange}
                 onBlur={this.onNoteSave}
@@ -84,7 +83,6 @@ class NoteEditor extends Component {
                   border: "none"
                 }}
               /> */}
-            </MDBCardText>
             {/* <MDBBtn color="deep-orange">go somewhere</MDBBtn> */}
           </MDBCardBody>
         </MDBCard>

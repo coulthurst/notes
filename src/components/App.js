@@ -150,14 +150,14 @@ class App extends Component {
         <div>
           <MDBContainer fluid style={{ marginTop: "70px" }}>
             <MDBRow>
-              <MDBCol size="4" className="pr-0">
+              <MDBCol sm="12" md="4" className="pr-0">
                 <NoteList
                   notes={this.state.notes}
                   onNoteSelect={this.onNoteSelect}
                 />
               </MDBCol>
 
-              <MDBCol size="8">
+              <MDBCol sm="12" md="8">
                 <NoteEditor
                   note={this.state.selectedNote}
                   onUpdateNoteTitle={this.onUpdateNoteTitle}

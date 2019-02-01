@@ -40,15 +40,13 @@ body {
 }
 .note-editor {
   margin-bottom: 15px;
-  height: calc(100vh - 90px);
-  overflow-y: scroll;
   border-radius: 3px;
 }
 .note-list--overflow {
   height: calc(100vh - 200px);
   overflow-y: scroll;
 }
-.note-editor::-webkit-scrollbar,
+.ql-editor::-webkit-scrollbar,
 .note-list--overflow::-webkit-scrollbar {
   width: 0;
 }
@@ -57,7 +55,7 @@ body {
   font-size: 32px !important;
 }
 .note-body {
-  padding: 0 0 2.25em 0 !important;
+  padding: 0 0 1.25em 0 !important;
 }
 .note-body .quill {
   /* height: calc(100vh - 190px);
@@ -295,4 +293,23 @@ i.fa.fa-trash-o.fa-2x:hover {
 .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-mitter,
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-mitter {
   stroke: #27ae60 !important;
+}
+
+.card-body.note-body {
+  height: 400px;
+  overflow-y: hidden;
+}
+#note-editor--card {
+  height: calc(100vh - 90px);
+  overflow: hidden;
+}
+.quill {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+@media only screen and (max-width: 767px) {
+  .note-list {
+    display: none;
+  }
 }
