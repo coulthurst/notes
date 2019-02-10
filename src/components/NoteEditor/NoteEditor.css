@@ -1,0 +1,10 @@
+.note-editor {
+  background-color: #2f3542;
+  color: #dfe4ea;
+  padding: 56px 0;
+}
+
+.ql-toolbar.ql-snow,
+.ql-container.ql-snow {
+  border: none;
+}

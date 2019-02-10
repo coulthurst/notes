@@ -8,12 +8,9 @@ import {
   MDBContainer,
   MDBRow,
   MDBListGroup,
-  MDBListGroupItem,
-  MDBModal,
-  MDBModalBody,
-  MDBModalHeader,
-  MDBModalFooter
+  MDBListGroupItem
 } from "mdbreact";
+import "./NavBar.css";
 import logo from "./logo.png";
 
 class Nav extends React.Component {
@@ -44,7 +41,7 @@ class Nav extends React.Component {
             </NavbarBrand>
           </NavbarNav>
         </MDBNavbar>
-        <div className="sideNav">
+        {/* <div className="sideNav">
           <div className="sideNav--banner">
             <NavbarToggler onClick={this.toggleSideNav}>
               <MDBIcon className="fa-1x" icon="arrow-left" />
@@ -84,7 +81,7 @@ class Nav extends React.Component {
               </MDBListGroup>
             </MDBContainer>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

@@ -8,6 +8,7 @@ import {
   MDBBtn,
   MDBIcon
 } from "mdbreact";
+import "./NoteEditor.css";
 import ReactQuill, { Quill, Mixin, Toolbar } from "react-quill";
 
 class NoteEditor extends Component {
@@ -34,45 +35,41 @@ class NoteEditor extends Component {
   render() {
     return (
       <div className="note-editor">
-        <MDBCard id="note-editor--card">
-          <MDBCardHeader className="note-title">
-            <input
-              value={this.props.note.title}
-              onChange={this.onTitleInputChange}
-              // onBlur={this.onNoteSave}
-              type="text"
-              style={{
-                width: "auto",
-                backgroundColor: "transparent",
-                color: "#fff",
-                border: "none"
-              }}
-            />
-            {/* <MDBIcon
+        <input
+          value={this.props.note.title}
+          onChange={this.onTitleInputChange}
+          // onBlur={this.onNoteSave}
+          type="text"
+          style={{
+            width: "auto",
+            backgroundColor: "transparent",
+            color: "#fff",
+            border: "none"
+          }}
+        />
+        {/* <MDBIcon
               icon="trash-o"
               className="fa-2x"
               style={{ float: "right" }}
               onClick={this.onNoteDelete}
             /> */}
-            {/* <MDBIcon
+        {/* <MDBIcon
               icon="ellipsis-v"
               className="fa-2x"
               style={{ float: "right" }}
             /> */}
 
-            {/* <MDBIcon
+        {/* <MDBIcon
               icon="save"
               className="fa-2x"
               style={{ float: "right" }}
               onClick={this.onNoteSave}
             /> */}
-          </MDBCardHeader>
-          <MDBCardBody className="note-body">
-            <ReactQuill
-              value={this.props.note.body}
-              onChange={this.onHandleChange}
-            />
-            {/* <textarea
+        <ReactQuill
+          value={this.props.note.body}
+          onChange={this.onHandleChange}
+        />
+        {/* <textarea
                 value={this.props.note.body}
                 onChange={this.onBodyInputChange}
                 onBlur={this.onNoteSave}
@@ -83,9 +80,7 @@ class NoteEditor extends Component {
                   border: "none"
                 }}
               /> */}
-            {/* <MDBBtn color="deep-orange">go somewhere</MDBBtn> */}
-          </MDBCardBody>
-        </MDBCard>
+        {/* <MDBBtn color="deep-orange">go somewhere</MDBBtn> */}
         {/* <MDBBtn id="btn--add" onClick={this.onAddNote}>
           <MDBIcon icon="plus" />
           &nbsp;&nbsp;&nbsp;Add Note

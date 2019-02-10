@@ -6,7 +6,7 @@ import {
   MDBCardBody,
   MDBInput
 } from "mdbreact";
-import Note from "../Note/Note";
+import Note from "../Note/";
 
 const NoteList = ({ notes, onNoteSelect }) => {
   const renderedList = notes.map(note => {

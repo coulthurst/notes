@@ -1,0 +1,48 @@
+.bottom-bar {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 56px;
+  width: 100vw;
+  background-color: #2f3542;
+}
+.bottom-bar:before {
+  display: block;
+  position: absolute;
+  content: "";
+  height: 1px;
+  width: 66vw;
+  background: #2ed573;
+}
+.bottom-bar_button_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bottom-bar_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 32px;
+  margin: 0 6px;
+  color: #57606f;
+  font-size: 22px;
+}
+.bottom-bar_button:hover {
+  cursor: pointer;
+}
+.icon-save:hover {
+  color: #2ed573;
+}
+.icon-favorite:hover {
+  color: #ffa502;
+}
+.icon-delete:hover {
+  color: #ff6b81;
+}
+.is-favorite {
+  color: #ffa502;
+}

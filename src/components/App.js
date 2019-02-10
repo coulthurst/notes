@@ -3,9 +3,10 @@ import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import firebase from "../fire";
-import NavBar from "./NavBar/NavBar";
-import NoteList from "./NoteList/NoteList";
-import NoteEditor from "./NoteEditor/NoteEditor";
+import NavBar from "./NavBar";
+import NoteList from "./NoteList";
+import NoteEditor from "./NoteEditor";
+import BottomBar from "./BottomBar";
 
 // fire base
 
@@ -134,6 +135,16 @@ class App extends Component {
     this.getNoteData(firebase.database().ref("notes"));
   };
 
+  onNoteFavorite = note => {
+    if (note.isFavorite === true) {
+      note.isFavorite = false;
+      this.onNoteSave(note);
+    } else {
+      note.isFavorite = true;
+      this.onNoteSave(note);
+    }
+  };
+
   render() {
     return (
       <div>
@@ -148,7 +159,22 @@ class App extends Component {
           />
         </div>
         <div>
-          <MDBContainer fluid style={{ marginTop: "70px" }}>
+          <NoteEditor
+            note={this.state.selectedNote}
+            onUpdateNoteTitle={this.onUpdateNoteTitle}
+            onUpdateNoteBody={this.onUpdateNoteBody}
+            onNoteSave={this.onNoteSave}
+            onNoteDelete={this.onNoteDelete}
+            onAddNote={this.onAddNote}
+          />
+
+          <BottomBar
+            note={this.state.selectedNote}
+            onNoteSave={this.onNoteSave}
+            onNoteDelete={this.onNoteDelete}
+            onNoteFavorite={this.onNoteFavorite}
+          />
+          {/* <MDBContainer fluid style={{ marginTop: "70px" }}>
             <MDBRow>
               <MDBCol sm="12" md="4" className="pr-0">
                 <NoteList
@@ -168,7 +194,7 @@ class App extends Component {
                 />
               </MDBCol>
             </MDBRow>
-          </MDBContainer>
+          </MDBContainer> */}
         </div>
 
         <ToastContainer />
