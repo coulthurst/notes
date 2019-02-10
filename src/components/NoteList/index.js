@@ -6,9 +6,9 @@ import logo from "./logo.png";
 import {
   MDBContainer,
   MDBListGroup,
-  MDBCard,
-  MDBCardBody,
-  MDBInput
+  MDBInput,
+  MDBBtn,
+  MDBIcon
 } from "mdbreact";
 import Note from "../Note/";
 
@@ -22,28 +22,33 @@ const NoteList = ({ notes, onNoteSelect }) => {
     alert(value);
   };
 
+  const onAddNote = e => {
+    console.log("asdf");
+  };
+
   return (
     <div className="note-list">
-      <MDBCard>
-        <MDBCardBody>
-          <MDBInput
-            hint="Search"
-            id="note-list--search"
-            labelClass="note-list--search_label"
-            containerClass="note-list--search_container"
-            // onChange={onSearchInputChange}
-          />
-          <img
-            className="logo"
-            style={{ height: "42px" }}
-            src={logo}
-            alt="Logo"
-          />
-          <div className="note-list--overflow">
-            <MDBListGroup>{renderedList}</MDBListGroup>
-          </div>
-        </MDBCardBody>
-      </MDBCard>
+      <MDBContainer fluid>
+        <MDBInput
+          hint="Search"
+          id="note-list--search"
+          labelClass="note-list--search_label"
+          containerClass="note-list--search_container"
+          // onChange={onSearchInputChange}
+        />
+        <img
+          className="logo"
+          style={{ height: "42px" }}
+          src={logo}
+          alt="Logo"
+        />
+        <div className="note-list--overflow">
+          <MDBListGroup>{renderedList}</MDBListGroup>
+        </div>
+        <MDBBtn className="add_note_btn" onClick={onAddNote}>
+          <MDBIcon icon="plus" />
+        </MDBBtn>
+      </MDBContainer>
     </div>
   );
 };
