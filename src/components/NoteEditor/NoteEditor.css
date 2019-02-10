@@ -8,3 +8,38 @@
 .ql-container.ql-snow {
   border: none;
 }
+
+.note-editor_nav {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 56px;
+  background-color: #2f3542;
+  z-index: 9;
+}
+.note-editor_button {
+  position: fixed;
+  height: 24px;
+  width: 24px;
+  left: 16px;
+}
+
+.icon-x {
+  color: #57606f;
+  font-size: 22px;
+}
+
+.icon-x:hover {
+  color: #ff6b81;
+  cursor: pointer;
+}
+.note-editor_nav input {
+  text-align: center;
+}
+.note-editor_nav input:focus {
+  outline: none;
+}

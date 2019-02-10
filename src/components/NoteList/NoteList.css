@@ -1,0 +1,29 @@
+body,
+.note-list .card,
+.note-list .list-group-item {
+  background-color: #2f3542;
+}
+.card {
+  height: 100vh;
+}
+.card-body {
+  padding-top: 0;
+}
+#note-list--search {
+  width: calc(100vw - 140px);
+  color: #57606f;
+  border: 1px solid #57606f;
+  border-radius: 40px;
+  padding: 0.5em 1em;
+  transition: 0.2s ease-in-out;
+}
+#note-list--search:focus {
+  outline: none;
+  border: 1px solid #dfe4ea;
+  color: #dfe4ea;
+}
+.logo {
+  position: absolute;
+  top: 24px;
+  right: 20px;
+}

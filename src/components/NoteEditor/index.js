@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import {
   MDBCard,
   MDBCardTitle,
@@ -35,56 +37,30 @@ class NoteEditor extends Component {
   render() {
     return (
       <div className="note-editor">
-        <input
-          value={this.props.note.title}
-          onChange={this.onTitleInputChange}
-          // onBlur={this.onNoteSave}
-          type="text"
-          style={{
-            width: "auto",
-            backgroundColor: "transparent",
-            color: "#fff",
-            border: "none"
-          }}
-        />
-        {/* <MDBIcon
-              icon="trash-o"
-              className="fa-2x"
-              style={{ float: "right" }}
-              onClick={this.onNoteDelete}
-            /> */}
-        {/* <MDBIcon
-              icon="ellipsis-v"
-              className="fa-2x"
-              style={{ float: "right" }}
-            /> */}
+        <div className="note-editor_nav">
+          <div className="note-editor_button">
+            <Link to="/">
+              <MDBIcon className="icon-x" icon="times" />
+            </Link>
+          </div>
+          <input
+            value={this.props.note.title}
+            onChange={this.onTitleInputChange}
+            // onBlur={this.onNoteSave}
+            type="text"
+            style={{
+              width: "auto",
+              backgroundColor: "transparent",
+              color: "#fff",
+              border: "none"
+            }}
+          />
+        </div>
 
-        {/* <MDBIcon
-              icon="save"
-              className="fa-2x"
-              style={{ float: "right" }}
-              onClick={this.onNoteSave}
-            /> */}
         <ReactQuill
           value={this.props.note.body}
           onChange={this.onHandleChange}
         />
-        {/* <textarea
-                value={this.props.note.body}
-                onChange={this.onBodyInputChange}
-                onBlur={this.onNoteSave}
-                type="text"
-                style={{
-                  width: "100%",
-                  backgroundColor: "transparent",
-                  border: "none"
-                }}
-              /> */}
-        {/* <MDBBtn color="deep-orange">go somewhere</MDBBtn> */}
-        {/* <MDBBtn id="btn--add" onClick={this.onAddNote}>
-          <MDBIcon icon="plus" />
-          &nbsp;&nbsp;&nbsp;Add Note
-        </MDBBtn> */}
       </div>
     );
   }

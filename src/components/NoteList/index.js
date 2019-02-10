@@ -1,4 +1,8 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import "./NoteList.css";
+import logo from "./logo.png";
+
 import {
   MDBContainer,
   MDBListGroup,
@@ -23,12 +27,17 @@ const NoteList = ({ notes, onNoteSelect }) => {
       <MDBCard>
         <MDBCardBody>
           <MDBInput
-            icon="search"
             hint="Search"
             id="note-list--search"
             labelClass="note-list--search_label"
             containerClass="note-list--search_container"
-            onChange={onSearchInputChange}
+            // onChange={onSearchInputChange}
+          />
+          <img
+            className="logo"
+            style={{ height: "42px" }}
+            src={logo}
+            alt="Logo"
           />
           <div className="note-list--overflow">
             <MDBListGroup>{renderedList}</MDBListGroup>

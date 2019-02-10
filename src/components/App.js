@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -148,33 +149,49 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div>
-          <NavBar
-            notes={this.state.notes}
-            note={this.state.selectedNote}
-            onNoteSelect={this.onNoteSelect}
-            onNoteSave={this.onNoteSave}
-            onNoteDelete={this.onNoteDelete}
-            onAddNote={this.onAddNote}
-          />
-        </div>
-        <div>
-          <NoteEditor
-            note={this.state.selectedNote}
-            onUpdateNoteTitle={this.onUpdateNoteTitle}
-            onUpdateNoteBody={this.onUpdateNoteBody}
-            onNoteSave={this.onNoteSave}
-            onNoteDelete={this.onNoteDelete}
-            onAddNote={this.onAddNote}
-          />
+        <Router>
+          <div>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <NoteList
+                  notes={this.state.notes}
+                  onNoteSelect={this.onNoteSelect}
+                />
+              )}
+            />
+            <Route
+              path={`/notes/${this.state.selectedNote.id}`}
+              render={() => (
+                <div>
+                  <NoteEditor
+                    note={this.state.selectedNote}
+                    onUpdateNoteTitle={this.onUpdateNoteTitle}
+                    onUpdateNoteBody={this.onUpdateNoteBody}
+                    onNoteSave={this.onNoteSave}
+                    onNoteDelete={this.onNoteDelete}
+                    onAddNote={this.onAddNote}
+                  />
+                  <BottomBar
+                    note={this.state.selectedNote}
+                    onNoteSave={this.onNoteSave}
+                    onNoteDelete={this.onNoteDelete}
+                    onNoteFavorite={this.onNoteFavorite}
+                  />
+                </div>
+              )}
+            />
+            {/* <NoteEditor
+              note={this.state.selectedNote}
+              onUpdateNoteTitle={this.onUpdateNoteTitle}
+              onUpdateNoteBody={this.onUpdateNoteBody}
+              onNoteSave={this.onNoteSave}
+              onNoteDelete={this.onNoteDelete}
+              onAddNote={this.onAddNote}
+            /> */}
 
-          <BottomBar
-            note={this.state.selectedNote}
-            onNoteSave={this.onNoteSave}
-            onNoteDelete={this.onNoteDelete}
-            onNoteFavorite={this.onNoteFavorite}
-          />
-          {/* <MDBContainer fluid style={{ marginTop: "70px" }}>
+            {/* <MDBContainer fluid style={{ marginTop: "70px" }}>
             <MDBRow>
               <MDBCol sm="12" md="4" className="pr-0">
                 <NoteList
@@ -195,7 +212,8 @@ class App extends Component {
               </MDBCol>
             </MDBRow>
           </MDBContainer> */}
-        </div>
+          </div>
+        </Router>
 
         <ToastContainer />
       </div>
