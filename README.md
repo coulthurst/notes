@@ -1,2 +1,2 @@
 ## Notes
-A note taking app built using javascript and React.
+A note taking app built using React and Firebase.
