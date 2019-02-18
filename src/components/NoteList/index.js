@@ -22,10 +22,6 @@ const NoteList = ({ notes, onNoteSelect }) => {
     alert(value);
   };
 
-  const onAddNote = e => {
-    console.log("asdf");
-  };
-
   return (
     <div className="note-list">
       <MDBContainer fluid>
@@ -45,9 +41,6 @@ const NoteList = ({ notes, onNoteSelect }) => {
         <div className="note-list--overflow">
           <MDBListGroup>{renderedList}</MDBListGroup>
         </div>
-        <MDBBtn className="add_note_btn" onClick={onAddNote}>
-          <MDBIcon icon="plus" />
-        </MDBBtn>
       </MDBContainer>
     </div>
   );

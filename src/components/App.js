@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon } from "mdbreact";
+import "./App.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import firebase from "../fire";
@@ -8,8 +9,6 @@ import NavBar from "./NavBar";
 import NoteList from "./NoteList";
 import NoteEditor from "./NoteEditor";
 import BottomBar from "./BottomBar";
-
-// fire base
 
 class App extends Component {
   state = {
@@ -155,10 +154,15 @@ class App extends Component {
               exact
               path="/"
               render={() => (
-                <NoteList
-                  notes={this.state.notes}
-                  onNoteSelect={this.onNoteSelect}
-                />
+                <div>
+                  <NoteList
+                    notes={this.state.notes}
+                    onNoteSelect={this.onNoteSelect}
+                  />
+                  <MDBBtn className="add_note_btn" onClick={this.onAddNote}>
+                    <MDBIcon icon="plus" />
+                  </MDBBtn>
+                </div>
               )}
             />
             <Route

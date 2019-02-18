@@ -31,9 +31,7 @@ class NoteEditor extends Component {
   onNoteDelete = () => {
     this.props.onNoteDelete(this.props.note);
   };
-  onAddNote = () => {
-    this.props.onAddNote();
-  };
+
   render() {
     return (
       <div className="note-editor">
@@ -46,7 +44,6 @@ class NoteEditor extends Component {
           <input
             value={this.props.note.title}
             onChange={this.onTitleInputChange}
-            // onBlur={this.onNoteSave}
             type="text"
             style={{
               width: "auto",
