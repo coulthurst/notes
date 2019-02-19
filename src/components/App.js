@@ -9,6 +9,7 @@ import NoteList from "./NoteList";
 import NoteEditor from "./NoteEditor";
 import BottomBar from "./BottomBar";
 import SearchBar from "./SearchBar";
+import logo from "../imgs/logo.png";
 
 class App extends Component {
 	state = {
@@ -91,6 +92,8 @@ class App extends Component {
 			.ref()
 			.child("notes/" + newNoteKey)
 			.set(note);
+
+		this.getNoteData(firebase.database().ref("notes"));
 	};
 
 	onNoteSave = note => {
@@ -152,7 +155,6 @@ class App extends Component {
 	};
 
 	filterNotes = term => {
-		// Variable to hold the original version of the list
 		if (this.state.filteredNotes !== []) {
 			var notes = this.state.notes;
 			var updatedList = notes;
@@ -179,6 +181,12 @@ class App extends Component {
 										<SearchBar
 											onUpdateSearch={this.onUpdateSearch}
 											term={this.state.term}
+										/>
+										<img
+											className='logo'
+											style={{ height: "42px" }}
+											src={logo}
+											alt='Logo'
 										/>
 										<NoteList
 											notes={this.state.filteredNotes}
