@@ -2,13 +2,12 @@
 
 body,
 html {
-	background-color: #2f3542;
-	color: #dfe4ea;
-	border: none !important;
+  background-color: #2f3542;
+  color: #dfe4ea;
+  border: none !important;
 }
 
 /* 
-
 	background-color: rgb(35, 36, 42) !important; 
 	color: #7f8c8d !important;
 	color: #2ecc71 !important;
